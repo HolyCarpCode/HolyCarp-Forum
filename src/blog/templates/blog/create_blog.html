@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .create-form {
+        max-width: 730px;
+        padding: 1rem;
+        margin: auto; /* Center the form horizontally */
+    }
+
+    .create-form .form-control,
+    .create-form .form-group {
+        margin-bottom: 1rem; /* Space between form elements */
+        box-sizing: border-box; /* Include padding and border in element's total width and height */
+    }
+
+    .create-form input[type="text"],
+    .create-form textarea {
+        border-radius: 0.25rem; /* Adjust border radius */
+    }
+
+    .create-form input[type="file"] {
+        margin-bottom: 1rem; /* Space between form elements */
+    }
+
+    .create-form .header-icon {
+        width: 72px; /* Adjust as necessary */
+        height: 72px; /* Adjust as necessary */
+        display: block;
+        margin: 0 auto 1rem; /* Center the image and add bottom margin */
+    }
+
+    .create-form .h3 {
+        text-align: center; /* Center the header text */
+        font-weight: 400; /* Slightly less bold text */
+        margin-bottom: 1rem; /* Space below the header */
+    }
+
+    .create-form .btn {
+        font-size: 1rem; /* Adjust font size */
+        padding: 0.75rem; /* Adjust padding for button */
+        width: 100%; /* Make button full width */
+        margin-top: 0.5rem; /* Space above the button */
+    }
+
+    .no-underline {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit text color */
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-8">
+            <form class="create-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <img src="https://www.svgrepo.com/show/474421/carp.svg" class="header-icon" alt="Temp Icon">
+                <h1 class="h3 mb-3 fw-normal form-header">Create Blog Post</h1>
+
+                <!-- Title -->
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" name="title" id="id_title" placeholder="Title" required autofocus>
+                    <label for="id_title">Title</label>
+                </div>
+
+                <!-- Body -->
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" rows="10" type="text" name="body" id="id_body" placeholder="This blog is about..." required></textarea>
+                    <label for="id_body">Description</label>
+                </div>
+
+                <!-- Image -->
+                <div class="form-group mb-3">
+                    <label for="id_image">Image</label>
+                    <input type="file" name="image" id="id_image" accept="image/*" required>
+                </div>
+
+                <!-- Submit btn -->
+                <button class="btn btn-primary w-100 py-2" type="submit">Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
